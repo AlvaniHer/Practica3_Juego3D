@@ -139,6 +139,8 @@ public class GameManager : MonoBehaviour
     void GameOver()
     {
         //carga la escena "GameOver"
+        PlayerPrefs.SetInt("PuntosFinal", puntos);
+        PlayerPrefs.Save();
         SceneManager.LoadScene("GameOver");
     }
 }

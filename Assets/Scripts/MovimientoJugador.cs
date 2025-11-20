@@ -127,4 +127,27 @@ public class MovimientoJugador : MonoBehaviour
         //Mueve el jugador verticalmente(arriba/abajo): 
         controller.Move(Vector3.up * velocidadVertical * Time.deltaTime);
     }
+    // Añade estas variables al principio del script MovimientoJugador
+
+    [Header("Disparo")]
+    public GameObject prefabBala;
+    public Transform puntoDisparo;
+    public float cadenciaDisparo = 0.5f;
+    private float tiempoUltimoDisparo = 0f;
+
+    // Añade este método
+
+    void OnFire(InputValue value)
+    {
+        if (Time.time >= tiempoUltimoDisparo + cadenciaDisparo)
+        {
+            Disparar();
+            tiempoUltimoDisparo = Time.time;
+        }
+    }
+
+    void Disparar()
+    {
+        Instantiate(prefabBala, puntoDisparo.position, puntoDisparo.rotation);
+    }
 }
